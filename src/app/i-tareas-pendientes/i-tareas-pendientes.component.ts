@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TareasDataService } from '../tareas-data.service';
 
 @Component({
   selector: 't-i-tareas-pendientes',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ITareasPendientesComponent implements OnInit {
 
-  tareas : string[];
+  tareas: Object[];
 
-  constructor() { }
+  constructor(private data: TareasDataService) { }
 
   ngOnInit() {
-    this.tareas = ['Recoger libros', 'Firmar autorización', 'Cita con María']
+    this.tareas = this.data.tareas;
   }
 
 }

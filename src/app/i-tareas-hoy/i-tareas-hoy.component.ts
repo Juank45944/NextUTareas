@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TareasDataService } from '../tareas-data.service';
 
 @Component({
   selector: 't-i-tareas-hoy',
@@ -7,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ITareasHoyComponent implements OnInit {
 
-  tareasHoy : string[];
+  tareasHoy : Object[];
 
-  constructor() { }
+  constructor(private data : TareasDataService) { }
 
   ngOnInit() {
-    this.tareasHoy = ['Firmar autorización'];
+    this.tareasHoy = this.data.getTareasHoy();
+
+    
   }
 
 }

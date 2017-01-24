@@ -9,6 +9,13 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ITareasPendientesComponent } from './i-tareas-pendientes/i-tareas-pendientes.component';
 import { ITareasHoyComponent } from './i-tareas-hoy/i-tareas-hoy.component';
 import { ITareasGruposComponent } from './i-tareas-grupos/i-tareas-grupos.component';
+import { NuevaTareaComponent } from './nueva-tarea/nueva-tarea.component';
+import { DatePickerModule } from 'ng2-datepicker';
+import { TareasRoutingModule } from './app-routing.module';
+import { VerGrupoComponent } from './ver-grupo/ver-grupo.component';
+import { TareasDataService } from './tareas-data.service';
+import { CheckFechaPipe } from './check-fecha.pipe';
+
 
 @NgModule({
   declarations: [
@@ -17,14 +24,19 @@ import { ITareasGruposComponent } from './i-tareas-grupos/i-tareas-grupos.compon
     InicioComponent,
     ITareasPendientesComponent,
     ITareasHoyComponent,
-    ITareasGruposComponent
+    ITareasGruposComponent,
+    NuevaTareaComponent,
+    VerGrupoComponent,
+    CheckFechaPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    TareasRoutingModule,
+    DatePickerModule
   ],
-  providers: [],
+  providers: [TareasDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
