@@ -15,6 +15,7 @@ export class ITareasGruposComponent implements OnInit {
 
   ngOnInit() {    
     this.grupos = this.data.grupos;
+
   }
 
   onHoverGroupIn(item){

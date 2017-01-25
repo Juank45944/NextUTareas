@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, state, style } from '@angular/core';
 import { TareasDataService } from '../tareas-data.service';
 
 @Component({

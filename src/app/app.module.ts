@@ -15,6 +15,9 @@ import { TareasRoutingModule } from './app-routing.module';
 import { VerGrupoComponent } from './ver-grupo/ver-grupo.component';
 import { TareasDataService } from './tareas-data.service';
 import { CheckFechaPipe } from './check-fecha.pipe';
+import { DatabaseService } from './database.service';
+import { FirstPageComponent } from './first-page/first-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,16 +30,18 @@ import { CheckFechaPipe } from './check-fecha.pipe';
     ITareasGruposComponent,
     NuevaTareaComponent,
     VerGrupoComponent,
-    CheckFechaPipe
+    CheckFechaPipe,
+    FirstPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     TareasRoutingModule,
-    DatePickerModule
+    DatePickerModule,
+    ReactiveFormsModule
   ],
-  providers: [TareasDataService],
+  providers: [TareasDataService, DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

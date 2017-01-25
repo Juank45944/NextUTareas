@@ -1,54 +1,39 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { DatabaseService } from './database.service';
+import { Response } from '@angular/http';
+import { Tarea } from './Tarea';
+import { Grupo } from './Grupo';
 
 @Injectable()
 export class TareasDataService {
 
-  grupos : Object[];
-  tareas : {titulo: string, descripcion : string, fecha : string, grupo : string}[];
+  grupos : Grupo[];
+  tareas : Tarea[];
 
-  constructor() {
-    this.grupos = [
-      {
-        nombre: 'Trabajo',
-        icono: 'business_center',
-        resaltado: false
-      },
-      {
-        nombre: 'Amigos',
-        icono: 'people',
-        resaltado: false
-      },
-      {
-        nombre: 'Universidad',
-        icono: 'school',
-        resaltado: false
-      }
-    ];
 
-    this.tareas = [
-      {
-        titulo: 'Recoger libros',
-        descripcion: 'Ir a la biblioteca principal, y recoger los libros que Juan dejó para mi',
-        fecha: '2017-01-25',
-        grupo: 'Universidad'
-      },
-      {
-        titulo: 'Firmar autorización',
-        descripcion: 'Revisar el documento para el pedido de esta semana y firmarlo para que se realice',
-        fecha: '2017-01-23',
-        grupo: 'Trabajo'
-      },
-      {
-        titulo: 'Cita con María',
-        descripcion: 'Recogerla en su departamento a las 8:00 pm para ir a cenar',
-        fecha: '2017-01-24',
-        grupo: 'Amigos'
-      }
-    ]
+  constructor(private database : DatabaseService) {
+     
+  }
+
+  initData(){
+    this.database.getTareas()
+      .subscribe(
+        (data) => {
+          this.tareas = data
+        }
+               
+      )
+    this.database.getGrupos()
+      .subscribe(
+        (data) => {
+          this.grupos = data
+        }
+            
+      )
   }
 
   getTareasHoy(){
-    let tareasHoy : Object[] = [];
+    let tareasHoy : Tarea[] = [];
     let hoy = this.getFechaHoy();
     this.tareas.forEach(element => {
       if (element.fecha == hoy) {
@@ -80,6 +65,16 @@ export class TareasDataService {
       }
     })
     return tareasGrupo;
+  }
+
+  addTarea(newTarea : Tarea){ 
+    this.tareas.push(newTarea)
+    this.database.addTarea(this.tareas)
+      .subscribe(
+        (data : Response) => console.log(data)
+        
+        
+      )
   }
 
 }

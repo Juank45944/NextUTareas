@@ -14,6 +14,7 @@ export class ITareasPendientesComponent implements OnInit {
 
   ngOnInit() {
     this.tareas = this.data.tareas;
+
   }
 
 }
